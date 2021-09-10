@@ -1,4 +1,4 @@
-## Config file
+## Config file (config.py)
 
     WIFI_SSID = 'YOUR_WIFI_SSID_NAME'
     WIFI_PASSWD = 'YOUR_WIFI_PASSWORD'
