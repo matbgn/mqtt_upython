@@ -28,15 +28,15 @@ except:
 
 esp.osdebug(None)
 gc.enable()
-CONTENT = open('index.html', 'r').read()
+CONTENT = open('portal.html', 'r').read()
 
 # These defaults are overwritten with the contents of /config.json by load_config()
 CONFIG = {
+    "client_id": b"esp8266_" + binascii.hexlify(unique_id()),
     "captive_portal_ssid_name": b"ESP PORTAL " + binascii.hexlify(unique_id())
                                 + b"_b" + str(random.getrandbits(16)).encode(),
-    "network_name": "TO_BE_RETRIEVED_BY_CAPTIVE_PORTAL",
-    "network_password": "TO_BE_RETRIEVED_BY_CAPTIVE_PORTAL",
-    "client_id": b"esp8266_" + binascii.hexlify(unique_id())
+    "network_name": "WOULD_BE_RETRIEVED_BY_CAPTIVE_PORTAL_OR_SET_IN_CONFIG_JSON",
+    "network_password": "WOULD_BE_RETRIEVED_BY_CAPTIVE_PORTAL_OR_SET_IN_CONFIG_JSON"
 }
 
 

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <title>ESP Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf8">
+</head>
+<body>
+<div style="text-align: center; padding: 50px" ;>
+    <h2 class="title">Configure Network Settings</h2>
+    <form action="/network" method="post">
+        <label for="ssid">Network name:</label>
+        <input class="input" type="text" id="ssid" name="ssid">
+        <div style="padding: 10px"></div>
+        <label for="password">Password:</label>
+        <input class="input" type="password" id="password" name="password">
+        <div style="padding: 10px"></div>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

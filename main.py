@@ -1,11 +1,10 @@
 import config
+from boot import CONFIG
 import math
 from time import sleep
-
-from machine import Pin, Signal, PWM, unique_id
-
-import binascii
 import random
+
+from machine import Pin, Signal, PWM
 
 from umqttsimple import MQTTClient
 
@@ -14,13 +13,21 @@ try:
 except:
     import json
 
-# These defaults are overwritten with the contents of /config.json by load_config()
-CONFIG = {
-    "client_id": b"esp8266_" + binascii.hexlify(unique_id()),
-    "topic": b"home",
-}
+import webrepl
+
 
 global led_pin
+
+TOPIC = b'home'
+
+
+def setup_webrepl():
+    try:
+        with open("webrepl_cfg.py", "w") as f:
+            f.write(CONFIG['webrepl_password'])
+            webrepl.start()
+    except OSError:
+        print("Couldn't initiate WebREPL")
 
 
 def setup_pins():
@@ -47,26 +54,6 @@ def pulse(iPwm, t):
         sleep(t / 1000)
 
 
-def load_config():
-    try:
-        with open("/config.json") as f:
-            config = json.loads(f.read())
-    except (OSError, ValueError):
-        print("Couldn't load /config.json")
-        save_config()
-    else:
-        CONFIG.update(config)
-        print("Loaded config from /config.json")
-
-
-def save_config():
-    try:
-        with open("/config.json", "w") as f:
-            f.write(json.dumps(CONFIG))
-    except OSError:
-        print("Couldn't save /config.json")
-
-
 def main():
     global led_pin
     led_pulse = PWM(led_pin, freq=1000)
@@ -78,7 +65,7 @@ def main():
     while True:
         # data = sensor_pin.value()
         data = int(random.getrandbits(6))
-        client.publish('{}/{}'.format(CONFIG['topic'],
+        client.publish('{}/{}'.format(TOPIC,
                                       CONFIG['client_id']),
                        bytes(str(data), 'utf-8'))
         print('Sensor state: {}'.format(data))
@@ -87,7 +74,6 @@ def main():
 
 
 if __name__ == '__main__':
-    setup_pins()
-    load_config()
+    setup_webrepl()
     setup_pins()
     main()
