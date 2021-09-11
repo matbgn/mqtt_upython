@@ -1,5 +1,5 @@
 import random
-
+import os
 import esp
 import gc
 import network
@@ -38,6 +38,29 @@ CONFIG = {
     "network_name": "WOULD_BE_RETRIEVED_BY_CAPTIVE_PORTAL_OR_SET_IN_CONFIG_JSON",
     "network_password": "WOULD_BE_RETRIEVED_BY_CAPTIVE_PORTAL_OR_SET_IN_CONFIG_JSON"
 }
+
+LOAD_WEBREPL = True
+
+
+def init_webrepl():
+    try:
+        with open("webrepl_cfg.py", "w") as f:
+            f.write("PASS = '%s'\n" % CONFIG['webrepl_password'])
+    except Exception as e:
+        print("Couldn't write WebREPL password: {!s}".format(e))
+    try:
+        import webrepl
+
+        webrepl.start()
+    except Exception as e:
+        print("Couldn't initiate WebREPL: {!s}".format(e))
+
+
+def reset_webrepl():
+    try:
+        os.remove("webrebl_cfg.py")
+    except Exception as e:
+        print("Not able to reset WebREPL: {!s}".format(e))
 
 
 def load_config():
@@ -109,8 +132,6 @@ class DNSQuery:
 def captive_portal(essid_name):
     existing_config = False
     try:
-        load_config()
-
         con = connection(CONFIG['network_name'], CONFIG['network_password'])
         if con is True:
             existing_config = True
@@ -189,6 +210,8 @@ def captive_portal(essid_name):
 
 
 def main():
+    load_config()
+    init_webrepl() if LOAD_WEBREPL else reset_webrepl()
     captive_portal(CONFIG['captive_portal_ssid_name'])
 
 

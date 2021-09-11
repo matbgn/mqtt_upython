@@ -13,21 +13,10 @@ try:
 except:
     import json
 
-import webrepl
-
 
 global led_pin
 
 TOPIC = b'home'
-
-
-def setup_webrepl():
-    try:
-        with open("webrepl_cfg.py", "w") as f:
-            f.write(CONFIG['webrepl_password'])
-            webrepl.start()
-    except OSError:
-        print("Couldn't initiate WebREPL")
 
 
 def setup_pins():
@@ -74,6 +63,5 @@ def main():
 
 
 if __name__ == '__main__':
-    setup_webrepl()
     setup_pins()
     main()

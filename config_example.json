@@ -1,7 +1,7 @@
 {
+  "client_id": "WILL_BE_OVERWRITTEN_AT_BOOT",
   "captive_portal_ssid_name": "WILL_BE_OVERWRITTEN_AT_BOOT",
   "network_name": "WOULD_BE_RETRIEVED_BY_CAPTIVE_PORTAL_OR_SET_IN_CONFIG_JSON",
   "network_password": "WOULD_BE_RETRIEVED_BY_CAPTIVE_PORTAL_OR_SET_IN_CONFIG_JSON",
-  "client_id": "WILL_BE_OVERWRITTEN_AT_BOOT",
   "webrepl_password": "YOUR_WEBREPL_SECRET"
 }
