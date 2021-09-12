@@ -1,7 +1,8 @@
 {
-  "client_id": "WILL_BE_OVERWRITTEN_AT_BOOT",
-  "captive_portal_ssid_name": "WILL_BE_OVERWRITTEN_AT_BOOT",
   "network_name": "WOULD_BE_RETRIEVED_BY_CAPTIVE_PORTAL_OR_SET_IN_CONFIG_JSON",
   "network_password": "WOULD_BE_RETRIEVED_BY_CAPTIVE_PORTAL_OR_SET_IN_CONFIG_JSON",
-  "webrepl_password": "YOUR_WEBREPL_SECRET"
+  "webrepl_password": "YOUR_WEBREPL_SECRET",
+  "mqtt_broker_ip": "YOUR_BROKER_IP",
+  "mqtt_user": "YOUR_MQTT_USER",
+  "mqtt_password": "YOUR_MQTT_USER_PASSWD"
 }

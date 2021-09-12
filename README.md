@@ -7,7 +7,7 @@
     MQTT_PASSWD = 'MQTT_PASS_FOR_CONNECTION'
 
 ## Captive portal
-![Captive portal](portal.png)
+![Captive portal](docs/portal.png)
 
 ## Web editor
-![Web editor](webrepl.png)
+![Web editor](docs/webrepl.png)

@@ -1,12 +1,12 @@
-import config
 from boot import CONFIG
 import math
 from time import sleep
-import random
 
 from machine import Pin, Signal, PWM
 
 from umqttsimple import MQTTClient
+
+from hcsr04 import HCSR04
 
 try:
     import ujson as json
@@ -14,26 +14,24 @@ except:
     import json
 
 
-global led_pin
-
-TOPIC = b'home'
+LED_PIN = None
+TOPIC = "home/oil_tank"
+SENSOR = None
 
 
 def setup_pins():
-    global led_pin
+    global LED_PIN, SENSOR
+    LED_PIN = Pin(2, Pin.OUT, value=0)
+    led = Signal(LED_PIN, invert=True)
 
-    led_pin = Pin(2, Pin.OUT, value=0)
-
-    led = Signal(led_pin, invert=True)
+    SENSOR = HCSR04(trigger_pin=16, echo_pin=0)
 
     for i in range(3):
         print("Led ON")
         led.on()
-        print(led.value())
         sleep(1)
         print("Led OFF")
         led.off()
-        print(led.value())
         sleep(1)
 
 
@@ -44,16 +42,16 @@ def pulse(iPwm, t):
 
 
 def main():
-    global led_pin
-    led_pulse = PWM(led_pin, freq=1000)
+    global LED_PIN, SENSOR
+    led_pulse = PWM(LED_PIN, freq=1000)
 
-    client = MQTTClient(CONFIG['client_id'], server=config.MQTT_BROKER,
-                        user=config.MQTT_USER, password=config.MQTT_PASSWD)
+    client = MQTTClient(CONFIG['client_id'], server=CONFIG['mqtt_broker_ip'],
+                        user=CONFIG['mqtt_user'], password=CONFIG['mqtt_password'])
     client.connect()
-    print("Connected to MQTT Broker {}".format(config.MQTT_BROKER))
+    print("Connected to MQTT Broker {}".format(CONFIG['mqtt_broker_ip']))
+    print("Sensor ID: {}".format(CONFIG['client_id']))
     while True:
-        # data = sensor_pin.value()
-        data = int(random.getrandbits(6))
+        data = SENSOR.distance_cm()
         client.publish('{}/{}'.format(TOPIC,
                                       CONFIG['client_id']),
                        bytes(str(data), 'utf-8'))

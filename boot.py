@@ -4,7 +4,7 @@ import esp
 import gc
 import network
 import time
-from machine import unique_id
+from machine import unique_id, Pin, Signal
 
 try:
     import ubinascii as binascii
@@ -40,6 +40,17 @@ CONFIG = {
 }
 
 LOAD_WEBREPL = True
+LED_PIN = Pin(2, Pin.OUT, value=0)
+LED = Signal(LED_PIN, invert=True)
+
+
+def blink(count):
+    cycle = 100
+    for i in range(count):
+        LED.on()
+        time.sleep_ms(cycle)
+        LED.off()
+        time.sleep_ms(cycle)
 
 
 def init_webrepl():
@@ -50,7 +61,6 @@ def init_webrepl():
         print("Couldn't write WebREPL password: {!s}".format(e))
     try:
         import webrepl
-
         webrepl.start()
     except Exception as e:
         print("Couldn't initiate WebREPL: {!s}".format(e))
@@ -68,11 +78,11 @@ def load_config():
         with open("/config.json") as f:
             config = json.loads(f.read())
     except (OSError, ValueError):
-        print("Couldn't load /config.json")
+        print("Couldn't load config.json")
         save_config()
     else:
         CONFIG.update(config)
-        print("Loaded config from /config.json")
+        print("Loaded config from config.json")
 
 
 def save_config():
@@ -80,10 +90,11 @@ def save_config():
         with open("/config.json", "w") as f:
             f.write(json.dumps(CONFIG))
     except OSError:
-        print("Couldn't save /config.json")
+        print("Couldn't save config.json")
 
 
 def connection(network_name, network_password):
+    global LED
     attempts = 0
     station = network.WLAN(network.STA_IF)
     if not station.isconnected():
@@ -93,8 +104,9 @@ def connection(network_name, network_password):
         while not station.isconnected():
             print("Attempts: {}".format(attempts))
             attempts += 1
+            blink(3)
             time.sleep(5)
-            if attempts > 3:
+            if attempts > 5:
                 return False
                 break
     print('Network Config:', station.ifconfig())
@@ -205,6 +217,8 @@ def captive_portal(essid_name):
 
             except:
                 print("Timeout")
+
+            blink(6)
             time.sleep_ms(1000)
         udps.close()
 
