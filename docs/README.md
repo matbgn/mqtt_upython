@@ -19,15 +19,25 @@
 </div>
 
 ## Introduction
-This repository is aimed to guide you through the complete process to work with [MicroPython](https://micropython.org/) on ESP8266 especially Wemos D1 mini.
+This repository is aimed to guide me (you) through the complete process to work with [MicroPython](https://micropython.org/) on ESP8266 especially Wemos D1 mini.
 
 All contributions are welcomed!
 
 ## How to start
+Simply clone this repository
+    
+    git clone https://github.com/matbgn/mqtt_upython.git
+
+Then inside of it make sure you have a fresh Python (3.5+) virtual environment. You can follow this tutorial to proceed: https://matbgn.github.io/skeleton-python/#/README?id=start-a-new-python-project
 
 
-## Documentation
+## Contribute to documentation
+If you want to work on documentation and therefore run this documentation locally (http://localhost:3000) with hot reload, make sure you run those scripts:
 
+    npm i
+    npm run docs
+
+Quick TL;DR about Docsify here: https://matbgn.github.io/skeleton-python/#/docsify-docs/start-documenting?id=start-documenting-using-docsify
 
 ## BOM (Bill Of Material)
 | Qty | Description                                                       | Price |
@@ -35,17 +45,3 @@ All contributions are welcomed!
 | 1   | [Wemos D1 Mini](https://www.aliexpress.com/item/32651747570.html) | ~2$   |
 |     |                                                                   |       |
 |     |                                                                   |       |
-
-## Config file (config.py)
-
-    WIFI_SSID = 'YOUR_WIFI_SSID_NAME'
-    WIFI_PASSWD = 'YOUR_WIFI_PASSWORD'
-    MQTT_BROKER = 'YOUR_MQTT_BROKER_IP_ADRESS'
-    MQTT_USER = 'MQTT_USER_FOR_CONNECTION'
-    MQTT_PASSWD = 'MQTT_PASS_FOR_CONNECTION'
-
-## Captive portal
-![Captive portal](img/portal.png)
-
-## Web editor
-![Web editor](img/webrepl.png)

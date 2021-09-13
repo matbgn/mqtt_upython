@@ -1,2 +1,2 @@
-- Introduction
-    - [About project](README.md)
+- [About project](README.md)
+- [Start with MicroPython](micropython.md)
