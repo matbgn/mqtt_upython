@@ -1,5 +1,6 @@
 - [About the project](README.md)
 - [Start with MicroPython](micropython.md)
 - Others
-    - [Python quick start guide](https://matbgn.github.io/skeleton-python/#/README?id=start-a-new-python-project) :snake:
-    - [Documenting with Docsify](https://matbgn.github.io/skeleton-python/#/docsify-docs/start-documenting?id=start-documenting-using-docsify) :orange_book:
+    - [Python quick start guide :snake:](https://matbgn.github.io/skeleton-python/#/README?id=start-a-new-python-project) 
+    - [Documenting with Docsify :orange_book:](https://matbgn.github.io/skeleton-python/#/docsify-docs/start-documenting?id=start-documenting-using-docsify) 
+    - [Markdown cheatsheet :bookmark_tabs:](https://gist.github.com/jonschlinkert/5854601)
