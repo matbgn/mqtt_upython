@@ -19,7 +19,7 @@
 </div>
 
 ## Introduction
-This repository is aimed to guide me (you) through the complete process to work with [MicroPython](https://micropython.org/) on ESP8266 especially Wemos D1 mini.
+This repository is aimed to guide me (you) through the complete process of working with [MicroPython](https://micropython.org/) on ESP8266 especially Wemos D1 mini.
 
 All contributions are welcomed!
 
