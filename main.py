@@ -4,9 +4,9 @@ from time import sleep
 
 from machine import Pin, Signal, PWM
 
-from umqttsimple import MQTTClient
+from lib.umqttsimple import MQTTClient
 
-from hcsr04 import HCSR04
+from lib.hcsr04 import HCSR04
 
 try:
     import ujson as json

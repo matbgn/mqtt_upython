@@ -1,0 +1,31 @@
+{
+  "name": "mqtt_upython",
+  "version": "0.1.0",
+  "description": "MQTT Client using micropython on ESP8266",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "npx docsify serve ./docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matbgn/mqtt_upython.git"
+  },
+  "keywords": [
+    "mqtt",
+    "home-assistant",
+    "esp8266"
+  ],
+  "author": "Matthieu Borgognon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matbgn/mqtt_upython/issues"
+  },
+  "homepage": "https://github.com/matbgn/mqtt_upython#readme",
+  "devDependencies": {
+    "docsify-cli": "^4.4.3"
+  }
+}

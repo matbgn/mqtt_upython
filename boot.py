@@ -28,7 +28,7 @@ except:
 
 esp.osdebug(None)
 gc.enable()
-CONTENT = open('portal.html', 'r').read()
+CONTENT = open('assets/portal.html', 'r').read()
 
 # These defaults are overwritten with the contents of /config.json by load_config()
 CONFIG = {
