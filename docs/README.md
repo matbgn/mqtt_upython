@@ -1,3 +1,12 @@
+# Esp8266 MQTT Client based on MicroPython
+
+<table border="0">
+  <tr>
+    <td>:bulb:</td>
+    <td>For a convinient interactive documentation please visit: <a href="https://matbgn.github.io/mqtt_upython/">https://matbgn.github.io/mqtt_upython/</a></td>
+  </tr>
+</table>
+
 ## Config file (config.py)
 
     WIFI_SSID = 'YOUR_WIFI_SSID_NAME'
