@@ -1,2 +1,5 @@
-- [About project](README.md)
+- [About the project](README.md)
 - [Start with MicroPython](micropython.md)
+- Others
+    - [Python quick start guide](https://matbgn.github.io/skeleton-python/#/README?id=start-a-new-python-project) :snake:
+    - [Documenting with Docsify](https://matbgn.github.io/skeleton-python/#/docsify-docs/start-documenting?id=start-documenting-using-docsify) :orange_book:
