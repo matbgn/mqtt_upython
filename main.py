@@ -2,11 +2,12 @@ from boot import CONFIG
 import math
 from time import sleep
 
-from machine import Pin, Signal, PWM
+from machine import Pin, Signal, PWM, I2C
 
 from lib.umqttsimple import MQTTClient
 
-from lib.hcsr04 import HCSR04
+# from lib.hcsr04 import HCSR04
+from lib.vl53l1x import VL53L1X
 
 try:
     import ujson as json
@@ -24,7 +25,9 @@ def setup_pins():
     LED_PIN = Pin(2, Pin.OUT, value=0)
     led = Signal(LED_PIN, invert=True)
 
-    SENSOR = HCSR04(trigger_pin=16, echo_pin=0)
+    # SENSOR = HCSR04(trigger_pin=16, echo_pin=0)
+    i2c = I2C(scl=Pin(5), sda=Pin(4))
+    SENSOR = VL53L1X(i2c)
 
     for i in range(3):
         print("Led ON")
@@ -51,11 +54,11 @@ def main():
     print("Connected to MQTT Broker {}".format(CONFIG['mqtt_broker_ip']))
     print("Sensor ID: {}".format(CONFIG['client_id']))
     while True:
-        data = SENSOR.distance_cm()
+        data = SENSOR.read()
         client.publish('{}/{}'.format(TOPIC,
                                       CONFIG['client_id']),
                        bytes(str(data), 'utf-8'))
-        print('Sensor state: {}'.format(data))
+        print('Sensor mesure: {}mm'.format(data))
         pulse(led_pulse, 50)
         sleep(5)
 
